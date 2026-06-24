@@ -1,0 +1,8 @@
+package com.elisabetta.taskmanager.model;
+
+public enum Priority {
+
+    LOW,
+    MEDIUM,
+    HIGH
+}
