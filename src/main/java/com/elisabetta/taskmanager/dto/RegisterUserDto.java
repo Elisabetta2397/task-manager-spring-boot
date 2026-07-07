@@ -5,12 +5,12 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 public class RegisterUserDto {
 
-    @NotBlank(message = "Lo username è obbligatorio")
+    @NotBlank(message = "Il campo username è obbligatorio")
     @Size(min = 3, max = 20, message = "Lo username deve contenere tra 3 e 20 caratteri")
     private String username;
 
-    @NotBlank(message = "L'email è obbligatoria")
-    @Email(message = "Inserisci un'email valida")
+    @NotBlank(message = "Il campo email è obbligatorio")
+    @Email(message = "Inserisci email valida")
     private String email;
 
     @NotBlank(message = "La password è obbligatoria")

@@ -29,7 +29,8 @@
 
                     <form th:action="@{/register}"
                              th:object="${registerUserDto}"
-                             method="post">
+                             method="post"
+                             novalidate>
 
                         <div class="mb-3">
 
@@ -39,6 +40,11 @@
                                     type="text"
                                     class="form-control"
                                     th:field="*{username}">
+
+                            <div class="text-danger"
+                                    th:if="${#fields.hasErrors('username')}"
+                                    th:errors="*{username}">
+                            </div>
 
                         </div>
 
@@ -50,6 +56,10 @@
                                     type="email"
                                     class="form-control"
                                     th:field="*{email}">
+                            <div class="text-danger"
+                                    th:if="${#fields.hasErrors('email')}"
+                                    th:errors="*{email}">
+                            </div>
 
                         </div>
 
@@ -62,6 +72,10 @@
                                     class="form-control"
                                     th:field="*{password}">
 
+                            <div class="text-danger"
+                                    th:if="${#fields.hasErrors('password')}"
+                                    th:errors="*{password}">
+                            </div>
                         </div>
 
                         <button class="btn btn-primary w-100">

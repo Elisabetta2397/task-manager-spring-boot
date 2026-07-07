@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.elisabetta.taskmanager.dto.RegisterUserDto;
 import com.elisabetta.taskmanager.service.UserService;
+import jakarta.validation.Valid;
+import org.springframework.validation.BindingResult;
 
 @Controller
 public class RegisterController {
@@ -26,13 +28,22 @@ public class RegisterController {
         return "register";
     }
 
+    
     @PostMapping("/register")
     public String registerUser(
-            @ModelAttribute RegisterUserDto registerUserDto) {
+        @Valid @ModelAttribute("registerUserDto") RegisterUserDto registerUserDto,
+        BindingResult bindingResult) {
 
-        userService.registerUser(registerUserDto);
+    if (bindingResult.hasErrors()) {
 
-        return "redirect:/";
+        return "register";
+
     }
+
+    userService.registerUser(registerUserDto);
+
+    return "redirect:/";
+
+}
 
 }
