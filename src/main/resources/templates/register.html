@@ -27,7 +27,9 @@
 
                 <div class="card-body">
 
-                    <form th:object="${registerUserDto}">
+                    <form th:action="@{/register}"
+                             th:object="${registerUserDto}"
+                             method="post">
 
                         <div class="mb-3">
 
