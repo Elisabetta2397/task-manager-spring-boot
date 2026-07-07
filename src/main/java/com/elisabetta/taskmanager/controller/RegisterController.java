@@ -10,6 +10,7 @@ import com.elisabetta.taskmanager.dto.RegisterUserDto;
 import com.elisabetta.taskmanager.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class RegisterController {
@@ -33,7 +34,8 @@ public class RegisterController {
 public String registerUser(
         @Valid @ModelAttribute("registerUserDto") RegisterUserDto registerUserDto,
         BindingResult bindingResult,
-        Model model) {
+        Model model,
+        RedirectAttributes redirectAttributes) {
 
     if (bindingResult.hasErrors()) {
         return "register";
@@ -49,6 +51,11 @@ public String registerUser(
 
         return "register";
     }
+
+    redirectAttributes.addFlashAttribute(
+            "successMessage",
+            "Registrazione completata con successo!"
+    );
 
     return "redirect:/";
 }
