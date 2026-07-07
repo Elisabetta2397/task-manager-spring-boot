@@ -26,12 +26,26 @@
                 <div class="card-header text-center">
 
                     <h3>Login</h3>
+                    <div
+                        th:if="${param.error}"
+                        class="alert alert-danger">
 
+                        Email o password non validi.
+
+                    </div>
+
+                    <div
+                        th:if="${param.logout}"
+                        class="alert alert-success">
+
+                        Logout effettuato con successo.
+
+                    </div>
                 </div>
 
                 <div class="card-body">
 
-                    <form>
+                    <form th:action="@{/login}" method="post">
 
                         <div class="mb-3">
 
@@ -42,8 +56,10 @@
                             </label>
 
                             <input
-                                    type="email"
-                                    class="form-control">
+                                type="email"
+                                name="username"
+                                class="form-control"
+                                required>
 
                         </div>
 
@@ -56,17 +72,19 @@
                             </label>
 
                             <input
-                                    type="password"
-                                    class="form-control">
-
+                                type="password"
+                                name="password"
+                                class="form-control"
+                                required>
                         </div>
 
                         <button
+                                type="submit"
                                 class="btn btn-primary w-100">
 
-                            Accedi
+                                Accedi
 
-                        </button>
+                            </button>
 
                     </form>
 
