@@ -14,20 +14,29 @@ Task Manager è un'applicazione web sviluppata con **Java** e **Spring Boot** pe
 - Maven
 - Git & GitHub
 
-## ✨ Funzionalità attuali
+## ✨ Funzionalità implementate
 
-- Homepage
-- Connessione al database MySQL
-- Entity User e Task
-- Persistenza dati con Spring Data JPA
+- ✅ Homepage
+- ✅ Connessione al database MySQL
+- ✅ Persistenza dati con Spring Data JPA
+- ✅ Registrazione utenti
+- ✅ Validazione dei campi del form
+- ✅ Password criptate con BCrypt
+- ✅ Controllo email duplicata
+- ✅ Gestione degli errori di registrazione
+
+---
 
 ## 🚧 Funzionalità in sviluppo
 
-- Registrazione utenti
-- Login
-- CRUD Task
-- Filtri per stato e priorità
-- Dashboard
+- 🔄 Login utenti
+- 🔄 Logout
+- 🔄 Dashboard personale
+- 🔄 CRUD completo dei Task
+- 🔄 Filtri per stato
+- 🔄 Filtri per priorità
+- 🔄 Ricerca Task
+- 🔄 Gestione ruoli (USER / ADMIN)
 
 ## ▶️ Avvio del progetto
 
