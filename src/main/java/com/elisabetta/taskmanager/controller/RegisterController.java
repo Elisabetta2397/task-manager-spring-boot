@@ -30,20 +30,27 @@ public class RegisterController {
 
     
     @PostMapping("/register")
-    public String registerUser(
+public String registerUser(
         @Valid @ModelAttribute("registerUserDto") RegisterUserDto registerUserDto,
-        BindingResult bindingResult) {
+        BindingResult bindingResult,
+        Model model) {
 
     if (bindingResult.hasErrors()) {
-
         return "register";
-
     }
 
-    userService.registerUser(registerUserDto);
+    try {
+
+        userService.registerUser(registerUserDto);
+
+    } catch (IllegalArgumentException e) {
+
+        model.addAttribute("emailError", e.getMessage());
+
+        return "register";
+    }
 
     return "redirect:/";
-
 }
 
 }

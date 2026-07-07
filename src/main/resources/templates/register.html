@@ -22,7 +22,13 @@
                 <div class="card-header text-center">
 
                     <h3>Registrazione</h3>
+                    <div
+                        th:if="${emailError}"
+                        class="alert alert-danger">
 
+                        <span th:text="${emailError}"></span>
+
+                    </div>
                 </div>
 
                 <div class="card-body">
