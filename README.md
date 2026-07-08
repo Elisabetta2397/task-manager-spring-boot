@@ -24,13 +24,14 @@ Task Manager è un'applicazione web sviluppata con **Java** e **Spring Boot** pe
 - ✅ Password criptate con BCrypt
 - ✅ Controllo email duplicata
 - ✅ Gestione degli errori di registrazione
+- ✅ Login utenti
+- ✅ Logout
+
 
 ---
 
 ## 🚧 Funzionalità in sviluppo
 
-- 🔄 Login utenti
-- 🔄 Logout
 - 🔄 Dashboard personale
 - 🔄 CRUD completo dei Task
 - 🔄 Filtri per stato
