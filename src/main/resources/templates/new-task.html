@@ -19,7 +19,10 @@
 
     <h2>Nuovo Task</h2>
 
-    <form th:object="${createTaskDto}">
+    <form
+        th:action="@{/tasks}"
+        th:object="${createTaskDto}"
+        method="post">
 
         <div class="mb-3">
 
@@ -90,7 +93,8 @@
         </div>
 
         <button
-                class="btn btn-success">
+                type="submit"
+                 class="btn btn-success">
 
             Salva
 

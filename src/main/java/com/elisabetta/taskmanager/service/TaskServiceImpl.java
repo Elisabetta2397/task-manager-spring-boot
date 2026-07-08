@@ -5,6 +5,8 @@ import com.elisabetta.taskmanager.model.Task;
 import com.elisabetta.taskmanager.model.User;
 import com.elisabetta.taskmanager.repository.TaskRepository;
 import org.springframework.stereotype.Service;
+import com.elisabetta.taskmanager.model.TaskStatus;
+import java.time.LocalDate;
 
 import java.util.List;
 
@@ -27,8 +29,21 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public Task createTask(CreateTaskDto createTaskDto, User user) {
 
-        return null;
+    Task task = new Task();
 
-    }
+    task.setTitle(createTaskDto.getTitle());
 
+    task.setDescription(createTaskDto.getDescription());
+
+    task.setPriority(createTaskDto.getPriority());
+
+    task.setStatus(TaskStatus.TODO);
+
+    task.setCreationDate(LocalDate.now());
+
+    task.setUser(user);
+
+    return taskRepository.save(task);
+
+}
 }
