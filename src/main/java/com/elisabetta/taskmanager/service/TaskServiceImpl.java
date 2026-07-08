@@ -1,5 +1,6 @@
 package com.elisabetta.taskmanager.service;
 
+import com.elisabetta.taskmanager.dto.CreateTaskDto;
 import com.elisabetta.taskmanager.model.Task;
 import com.elisabetta.taskmanager.model.User;
 import com.elisabetta.taskmanager.repository.TaskRepository;
@@ -20,6 +21,13 @@ public class TaskServiceImpl implements TaskService {
     public List<Task> getTasksByUser(User user) {
 
         return taskRepository.findByUserOrderByCreationDateDesc(user);
+
+    }
+
+    @Override
+    public Task createTask(CreateTaskDto createTaskDto, User user) {
+
+        return null;
 
     }
 
