@@ -10,5 +10,6 @@ public interface TaskService {
 
     List<Task> getTasksByUser(User user);
     Task createTask(CreateTaskDto createTaskDto, User user);
+    void deleteTask(Long id);
 
 }
