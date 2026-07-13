@@ -12,7 +12,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import com.elisabetta.taskmanager.model.Task;
+
 
 @Controller
 public class TaskController {
@@ -61,5 +62,17 @@ public class TaskController {
 
     return "redirect:/dashboard";
 
-}
+    }
+
+    @GetMapping("/tasks/{id}/edit")
+    public String editTask(@PathVariable Long id,
+                       Model model) {
+
+    Task task = taskService.getTaskById(id);
+
+    model.addAttribute("task", task);
+
+    return "edit-task";
+
+    }
 }

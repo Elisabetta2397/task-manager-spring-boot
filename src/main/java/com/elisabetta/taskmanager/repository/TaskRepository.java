@@ -10,5 +10,6 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
 
     List<Task> findByUser(User user);
     List<Task> findByUserOrderByCreationDateDesc(User user);
+    
 
 }

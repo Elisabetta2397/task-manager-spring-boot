@@ -53,4 +53,12 @@ public class TaskServiceImpl implements TaskService {
     taskRepository.deleteById(id);
 
     }
+
+    @Override
+    public Task getTaskById(Long id) {
+
+    return taskRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Task non trovato"));
+
+    }
 }

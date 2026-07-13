@@ -72,19 +72,28 @@
 
                         <td>
 
-                            <form
-                                    th:action="@{/tasks/{id}/delete(id=${task.id})}"
-                                    method="post">
+                                <a
+                                        th:href="@{/tasks/{id}/edit(id=${task.id})}"
+                                        class="btn btn-warning btn-sm">
 
-                                <button
-                                        type="submit"
-                                        class="btn btn-danger btn-sm">
+                                    Modifica
 
-                                    Elimina
+                                </a>
 
-                                </button>
+                                <form
+                                        th:action="@{/tasks/{id}/delete(id=${task.id})}"
+                                        method="post"
+                                        style="display:inline;">
 
-                            </form>
+                                    <button
+                                            type="submit"
+                                            class="btn btn-danger btn-sm">
+
+                                        Elimina
+
+                                    </button>
+
+                                </form>
 
                         </td>
 
