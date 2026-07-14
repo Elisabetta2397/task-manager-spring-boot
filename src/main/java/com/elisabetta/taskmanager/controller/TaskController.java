@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import com.elisabetta.taskmanager.model.Task;
+import com.elisabetta.taskmanager.dto.UpdateTaskDto;
 
 
 @Controller
@@ -70,9 +71,30 @@ public class TaskController {
 
     Task task = taskService.getTaskById(id);
 
-    model.addAttribute("task", task);
+    UpdateTaskDto updateTaskDto = new UpdateTaskDto();
+
+    updateTaskDto.setTitle(task.getTitle());
+    updateTaskDto.setDescription(task.getDescription());
+    updateTaskDto.setPriority(task.getPriority());
+
+    model.addAttribute("updateTaskDto", updateTaskDto);
+    model.addAttribute("taskId", id);
 
     return "edit-task";
 
+    }
+
+    @PostMapping("/tasks/{id}/edit")
+    public String updateTask(@PathVariable Long id,
+                         @Valid UpdateTaskDto updateTaskDto,
+                         BindingResult bindingResult) {
+
+    if (bindingResult.hasErrors()) {
+        return "edit-task";
+    }
+
+    taskService.updateTask(id, updateTaskDto);
+
+    return "redirect:/dashboard";
     }
 }

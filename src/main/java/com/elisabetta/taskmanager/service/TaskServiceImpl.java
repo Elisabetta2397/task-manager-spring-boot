@@ -1,6 +1,7 @@
 package com.elisabetta.taskmanager.service;
 
 import com.elisabetta.taskmanager.dto.CreateTaskDto;
+import com.elisabetta.taskmanager.dto.UpdateTaskDto;
 import com.elisabetta.taskmanager.model.Task;
 import com.elisabetta.taskmanager.model.User;
 import com.elisabetta.taskmanager.repository.TaskRepository;
@@ -60,5 +61,18 @@ public class TaskServiceImpl implements TaskService {
     return taskRepository.findById(id)
             .orElseThrow(() -> new RuntimeException("Task non trovato"));
 
+    }
+
+    @Override
+    public Task updateTask(Long id, UpdateTaskDto updateTaskDto) {
+
+    Task task = taskRepository.findById(id)
+        .orElseThrow(() -> new RuntimeException("Task non trovato"));
+
+    task.setTitle(updateTaskDto.getTitle());
+    task.setDescription(updateTaskDto.getDescription());
+    task.setPriority(updateTaskDto.getPriority());
+
+    return taskRepository.save(task);
     }
 }

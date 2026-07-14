@@ -1,6 +1,7 @@
 package com.elisabetta.taskmanager.service;
 
 import com.elisabetta.taskmanager.dto.CreateTaskDto;
+import com.elisabetta.taskmanager.dto.UpdateTaskDto;
 import com.elisabetta.taskmanager.model.Task;
 import com.elisabetta.taskmanager.model.User;
 
@@ -12,5 +13,6 @@ public interface TaskService {
     Task createTask(CreateTaskDto createTaskDto, User user);
     void deleteTask(Long id);
     Task getTaskById(Long id);
+   Task updateTask(Long id, UpdateTaskDto updateTaskDto);
 
 }
