@@ -46,6 +46,7 @@
 
             <label>Priorità</label>
 
+
             <select
                     th:field="*{priority}"
                     class="form-select">
@@ -63,6 +64,30 @@
                 </option>
 
             </select>
+
+        </div>
+
+        <div class="mb-3">
+
+                <label>Stato</label>
+
+                <select
+                        th:field="*{status}"
+                        class="form-select">
+
+                    <option th:value="${T(com.elisabetta.taskmanager.model.TaskStatus).TODO}">
+                        Da fare
+                    </option>
+
+                    <option th:value="${T(com.elisabetta.taskmanager.model.TaskStatus).IN_PROGRESS}">
+                        In corso
+                    </option>
+
+                    <option th:value="${T(com.elisabetta.taskmanager.model.TaskStatus).COMPLETED}">
+                        Completato
+                    </option>
+
+                </select>
 
         </div>
 

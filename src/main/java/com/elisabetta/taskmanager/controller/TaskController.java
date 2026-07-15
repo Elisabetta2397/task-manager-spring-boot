@@ -76,9 +76,11 @@ public class TaskController {
     updateTaskDto.setTitle(task.getTitle());
     updateTaskDto.setDescription(task.getDescription());
     updateTaskDto.setPriority(task.getPriority());
+    updateTaskDto.setStatus(task.getStatus());
 
     model.addAttribute("updateTaskDto", updateTaskDto);
     model.addAttribute("taskId", id);
+    
 
     return "edit-task";
 

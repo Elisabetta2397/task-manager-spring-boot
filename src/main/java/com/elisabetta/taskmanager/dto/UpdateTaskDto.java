@@ -1,6 +1,8 @@
 package com.elisabetta.taskmanager.dto;
 
 import com.elisabetta.taskmanager.model.Priority;
+import com.elisabetta.taskmanager.model.TaskStatus;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -39,5 +41,16 @@ public class UpdateTaskDto {
 
     public void setPriority(Priority priority) {
         this.priority = priority;
+    }
+
+    @NotNull(message = "Lo stato è obbligatorio.")
+    private TaskStatus status;
+
+    public TaskStatus getStatus() {
+    return status;
+    }
+
+    public void setStatus(TaskStatus status) {
+        this.status = status;
     }
 }
