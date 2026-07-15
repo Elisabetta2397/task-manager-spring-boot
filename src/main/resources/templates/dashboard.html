@@ -68,7 +68,33 @@
 
                         <td th:text="${task.priority}"></td>
 
-                        <td th:text="${task.status}"></td>
+                        <td>
+
+                                <span
+                                        th:if="${task.status.name() == 'TODO'}"
+                                        class="badge bg-warning text-dark">
+
+                                    Da fare
+
+                                </span>
+
+                                <span
+                                        th:if="${task.status.name() == 'IN_PROGRESS'}"
+                                        class="badge bg-primary">
+
+                                    In corso
+
+                                </span>
+
+                                <span
+                                        th:if="${task.status.name() == 'COMPLETED'}"
+                                        class="badge bg-success">
+
+                                    Completato
+
+                                </span>
+
+                        </td>
 
                         <td>
 
