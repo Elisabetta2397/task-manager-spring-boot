@@ -8,6 +8,7 @@ import com.elisabetta.taskmanager.repository.TaskRepository;
 import org.springframework.stereotype.Service;
 import com.elisabetta.taskmanager.model.TaskStatus;
 import java.time.LocalDate;
+import com.elisabetta.taskmanager.model.Priority;
 
 import java.util.List;
 
@@ -76,4 +77,26 @@ public class TaskServiceImpl implements TaskService {
 
     return taskRepository.save(task);
     }
+
+    @Override
+    public List<Task> getTasksByUserAndStatus(User user, TaskStatus status) {
+
+        return taskRepository.findByUserAndStatus(user, status);
+
+    }
+
+    @Override
+public List<Task> getTasksByUserAndPriority(User user, Priority priority) {
+
+    return taskRepository.findByUserAndPriority(user, priority);
+
+}
+
+    @Override
+public List<Task> getTasksByUserAndStatusAndPriority(User user,
+                                                     TaskStatus status,
+                                                     Priority priority) {
+
+    return taskRepository.findByUserAndStatusAndPriority(user, status, priority);
+}
 }

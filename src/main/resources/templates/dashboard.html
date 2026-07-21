@@ -47,6 +47,73 @@
 
         <h3>I tuoi task</h3>
 
+        <form th:action="@{/dashboard}" method="get" class="mb-3">
+
+    <div class="row">
+
+        <div class="col-md-4">
+
+            <select
+                    class="form-select"
+                    name="status"
+                    onchange="this.form.submit()">
+
+                <option
+                        value=""
+                        th:selected="${selectedStatus == null}">
+
+                    Tutti i task
+
+                </option>
+
+               <option
+                    th:each="status : ${statuses}"
+                    th:value="${status}"
+                    th:selected="${status == selectedStatus}"
+                    th:text="${status.name() == 'TODO' ? 'Da fare' :
+                            status.name() == 'IN_PROGRESS' ? 'In corso' :
+                            'Completato'}">
+                </option>
+
+            </select>
+
+        </div>
+
+        <div class="col-md-4">
+
+    <select
+            class="form-select"
+            name="priority"
+            onchange="this.form.submit()">
+
+        <option
+                value=""
+                th:selected="${selectedPriority == null}">
+
+            Tutte le priorità
+
+        </option>
+
+        <option
+                th:each="priority : ${priorities}"
+                th:value="${priority}"
+                th:selected="${priority == selectedPriority}"
+                th:text="${priority.name() == 'LOW' ? 'Bassa' :
+                          priority.name() == 'MEDIUM' ? 'Media' :
+                          'Alta'}">
+        </option>
+
+    </select>
+
+</div>
+
+    </div>
+
+    
+
+</form>
+
+
             <table class="table table-striped">
 
                 <thead>
