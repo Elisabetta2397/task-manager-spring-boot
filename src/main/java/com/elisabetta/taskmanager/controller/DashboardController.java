@@ -4,12 +4,16 @@ import com.elisabetta.taskmanager.model.TaskStatus;
 import com.elisabetta.taskmanager.model.User;
 import com.elisabetta.taskmanager.repository.UserRepository;
 import com.elisabetta.taskmanager.service.TaskService;
+
+import java.util.List;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.elisabetta.taskmanager.model.Priority;
+import com.elisabetta.taskmanager.model.Task;
 
 @Controller
 public class DashboardController {
@@ -28,39 +32,34 @@ public class DashboardController {
 public String dashboard(
         @RequestParam(required = false) TaskStatus status,
         @RequestParam(required = false) Priority priority,
+        @RequestParam(required = false) String title,
         Authentication authentication,
         Model model) {
     User user = userRepository
             .findByEmail(authentication.getName())
             .orElseThrow();
 
-   if (status != null && priority != null) {
+    List<Task> tasks;
 
-    model.addAttribute(
-            "tasks",
-            taskService.getTasksByUserAndStatusAndPriority(user, status, priority)
-    );
+   if (title != null && !title.isBlank()) {
+
+    tasks = taskService.searchTasksByTitle(user, title);
+
+} else if (status != null && priority != null) {
+
+    tasks = taskService.getTasksByUserAndStatusAndPriority(user, status, priority);
 
 } else if (status != null) {
 
-    model.addAttribute(
-            "tasks",
-            taskService.getTasksByUserAndStatus(user, status)
-    );
+    tasks = taskService.getTasksByUserAndStatus(user, status);
 
 } else if (priority != null) {
 
-    model.addAttribute(
-            "tasks",
-            taskService.getTasksByUserAndPriority(user, priority)
-    );
+    tasks = taskService.getTasksByUserAndPriority(user, priority);
 
 } else {
 
-    model.addAttribute(
-            "tasks",
-            taskService.getTasksByUser(user)
-    );
+    tasks = taskService.getTasksByUser(user);
 
 }
 
@@ -71,6 +70,8 @@ public String dashboard(
 
     model.addAttribute("username",
             user.getUsername());
+    model.addAttribute("searchTitle", title);
+    model.addAttribute("tasks", tasks);
 
     return "dashboard";
         }

@@ -99,4 +99,9 @@ public List<Task> getTasksByUserAndStatusAndPriority(User user,
 
     return taskRepository.findByUserAndStatusAndPriority(user, status, priority);
 }
+
+@Override
+public List<Task> searchTasksByTitle(User user, String title) {
+    return taskRepository.findByUserAndTitleContainingIgnoreCase(user, title);
+}
 }

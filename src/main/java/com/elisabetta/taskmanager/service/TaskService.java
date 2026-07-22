@@ -21,5 +21,6 @@ public interface TaskService {
     List<Task> getTasksByUserAndStatusAndPriority(User user,
                                               TaskStatus status,
                                               Priority priority);
+    List<Task> searchTasksByTitle(User user, String title);
 
 }
