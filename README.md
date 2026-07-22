@@ -26,16 +26,23 @@ Task Manager è un'applicazione web sviluppata con **Java** e **Spring Boot** pe
 - ✅ Gestione degli errori di registrazione
 - ✅ Login utenti
 - ✅ Logout
+- ✅ Dashboard personale
+- ✅ Creazione di un task
+- ✅ Modifica di un task
+- ✅ Eliminazione di un task
+- ✅ Gestione dello stato dei task
+- ✅ Gestione della priorità dei task
+- ✅ Visualizzazione dei task dell'utente autenticato
+- ✅ Filtro per stato
+- ✅ Filtro per priorità
+- ✅ Filtro combinato per stato e priorità
+
 
 
 ---
 
 ## 🚧 Funzionalità in sviluppo
 
-- 🔄 Dashboard personale
-- 🔄 CRUD completo dei Task
-- 🔄 Filtri per stato
-- 🔄 Filtri per priorità
 - 🔄 Ricerca Task
 - 🔄 Gestione ruoli (USER / ADMIN)
 
