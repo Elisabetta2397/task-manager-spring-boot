@@ -10,38 +10,116 @@
     <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
             rel="stylesheet">
+    <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 </head>
 
 <body>
 
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
 <div class="container mt-5">
 
-    <h1>
+<div class="d-flex justify-content-between align-items-center mb-5">
 
-        Dashboard
+    <div>
 
-    </h1>
+        <h1 class="fw-bold mb-2">
+            <i class="bi bi-speedometer2 me-2"></i>
+            Dashboard
+        </h1>
 
-    <p>
+        <p class="text-muted mb-0">
+            Gestisci tutti i tuoi task in un unico posto.
+        </p>
 
-        Ciao!
+    </div>
 
-    </p>
+    <a th:href="@{/tasks/new}"
+       class="btn btn-success btn-lg">
 
-    <p>
-
-        Qui vedrai tutti i tuoi task.
-
-    </p>
-
-    <a
-        th:href="@{/tasks/new}"
-        class="btn btn-primary">
+        <i class="bi bi-plus-circle me-2"></i>
 
         Nuovo Task
 
     </a>
+
+</div>
+
+<div class="row mb-4">
+
+    <div class="col-md-3">
+
+        <div class="card shadow-sm border-0 border-top border-info border-4 text-center">
+
+            <div class="card-body">
+
+                <h6 class="text-muted">
+                    <i class="bi bi-list-task text-info">Totale Task</i>
+                </h6>
+
+                <h2 th:text="${totalTasks}"></h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="card shadow-sm border-0 border-top border-warning border-4 text-center">
+            <div class="card-body">
+
+                <h6 class="text-muted">
+                    <i class="bi bi-hourglass-split text-warning">Da fare</i>
+                </h6>
+
+                <h2 th:text="${todoTasks}"></h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="card shadow-sm border-0 border-top border-primary border-4 text-center">
+
+            <div class="card-body">
+
+                <h6 class="text-muted">
+                    <i class="bi bi-arrow-repeat text-primary">In corso</i>
+                </h6>
+
+                <h2 th:text="${inProgressTasks}"></h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="card shadow-sm border-0 border-top border-success border-4 text-center">
+            <div class="card-body">
+
+                <h6 class="text-muted">
+                    <i class="bi bi-check-circle text-success">Completati</i>
+                </h6>
+
+                <h2 th:text="${completedTasks}"></h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 
     <hr>
 
@@ -131,7 +209,31 @@
 
 </form>
 
-            <table class="table table-striped">
+<div
+        th:if="${#lists.isEmpty(tasks)}"
+        class="alert alert-info text-center shadow-sm">
+
+    <i class="bi bi-info-circle me-2"></i>
+
+    Non hai ancora creato nessun task.
+
+    <br><br>
+
+    <a
+            th:href="@{/tasks/new}"
+            class="btn btn-primary">
+
+        <i class="bi bi-plus-circle me-1"></i>
+
+        Crea il primo task
+
+    </a>
+
+</div>
+
+            <table
+        th:unless="${#lists.isEmpty(tasks)}"
+        class="table table-hover align-middle shadow-sm">
 
                 <thead>
 
@@ -150,8 +252,11 @@
 
                         <td th:text="${task.title}"></td>
 
-                        <td th:text="${task.priority}"></td>
-
+                        <td
+                            th:text="${task.priority.name() == 'HIGH' ? 'Alta' :
+                                    task.priority.name() == 'MEDIUM' ? 'Media' :
+                                    'Bassa'}">
+                        </td>
                         <td>
 
                                 <span
@@ -186,7 +291,8 @@
                                         th:href="@{/tasks/{id}/edit(id=${task.id})}"
                                         class="btn btn-warning btn-sm">
 
-                                    Modifica
+                                   <i class="bi bi-pencil-square me-1"></i>
+                                            Modifica
 
                                 </a>
 
@@ -199,7 +305,8 @@
                                             type="submit"
                                             class="btn btn-danger btn-sm">
 
-                                        Elimina
+                                        <i class="bi bi-trash me-1"></i>
+                                                Elimina
 
                                     </button>
 

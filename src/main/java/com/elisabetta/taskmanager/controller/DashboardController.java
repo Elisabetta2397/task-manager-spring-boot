@@ -72,6 +72,27 @@ public String dashboard(
             user.getUsername());
     model.addAttribute("searchTitle", title);
     model.addAttribute("tasks", tasks);
+    model.addAttribute(
+        "totalTasks",
+        taskService.countTasksByUser(user));
+
+    model.addAttribute(
+        "todoTasks",
+        taskService.countTasksByUserAndStatus(
+                user,
+                TaskStatus.TODO));
+
+    model.addAttribute(
+        "inProgressTasks",
+        taskService.countTasksByUserAndStatus(
+                user,
+                TaskStatus.IN_PROGRESS));
+
+    model.addAttribute(
+        "completedTasks",
+        taskService.countTasksByUserAndStatus(
+                user,
+                TaskStatus.COMPLETED));
 
     return "dashboard";
         }

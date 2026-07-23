@@ -22,5 +22,8 @@ public interface TaskService {
                                               TaskStatus status,
                                               Priority priority);
     List<Task> searchTasksByTitle(User user, String title);
+    long countTasksByUser(User user);
+
+    long countTasksByUserAndStatus(User user, TaskStatus status);
 
 }

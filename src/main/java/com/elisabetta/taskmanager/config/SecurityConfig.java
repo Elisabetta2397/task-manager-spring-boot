@@ -45,14 +45,14 @@ public class SecurityConfig {
 
                         .loginPage("/login")
                         .loginProcessingUrl("/login")
-                        .defaultSuccessUrl("/", true)
+                        .defaultSuccessUrl("/?loginSuccess", true)
                         .failureUrl("/login?error")
                         .permitAll()
                 )
 
                 .logout(logout -> logout
 
-                        .logoutSuccessUrl("/login?logout")
+                        .logoutSuccessUrl("/?logout")
                         .permitAll()
                 );
 
